@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Currency extends StatelessWidget {
-  const Currency({super.key});
-
+class CurrencyPage extends StatefulWidget {
+  const CurrencyPage({super.key});
   @override
-  Widget build(BuildContext context) {
-    double result = 0;
+  State<CurrencyPage> createState() => _CurrencyPage();
+}
+
+class _CurrencyPage extends State<CurrencyPage> {
+  double result = 0;
+  @override
+  Widget build(BuildContext contect) {
     TextEditingController textConroller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
@@ -19,7 +23,7 @@ class Currency extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              result.toString(),
+              "R ${result.toStringAsFixed(2).toString()}",
               style: TextStyle(
                 color: const Color.fromARGB(255, 255, 255, 255),
                 fontSize: 45,
@@ -56,7 +60,9 @@ class Currency extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                result = double.parse(textConroller.text) * 18.69;
+                setState(() {
+                  result = double.parse(textConroller.text) * 18.69;
+                });
               },
               style: TextButton.styleFrom(
                 fixedSize: (Size(300, 25)),
